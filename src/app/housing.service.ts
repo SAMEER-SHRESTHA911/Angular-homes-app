@@ -5,7 +5,7 @@ import { HousingLocation } from './housing-location';
   providedIn: 'root'
 })
 export class HousingService {
-  protected housingLocationList: HousingLocation[] = [
+  public housingLocationList: HousingLocation[] = [
     {
       id: 0,
       name: 'Acme Fresh Start Housing',
@@ -113,8 +113,8 @@ export class HousingService {
     return this.housingLocationList;
   }
   getHousingLocationById(id:Number) : HousingLocation|undefined{
-    return this.housingLocationList.find(housingLocation => {
-      housingLocation.id === id;
-    })
+    return this.housingLocationList.find(housingLocation => (
+      housingLocation.id === id
+    ))
   }
 }

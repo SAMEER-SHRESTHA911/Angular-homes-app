@@ -1,4 +1,4 @@
-import { Component,inject } from '@angular/core';
+import { Component,inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HousingLocation } from '../housing-location';
@@ -31,14 +31,19 @@ import { HousingService } from '../housing.service';
   `,
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent { 
+export class DetailsComponent  implements OnInit { 
   route: ActivatedRoute = inject(ActivatedRoute);
   
   housingService = inject(HousingService);
   housingLocation : HousingLocation | undefined;
 
   constructor(){
+  }
+
+  ngOnInit(): void {
+      
     const housingLocationId = Number(this.route.snapshot.params['id']);
+    console.log(housingLocationId)
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
   }
 }
